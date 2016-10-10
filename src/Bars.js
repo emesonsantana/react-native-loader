@@ -7,19 +7,18 @@ import Bar from './animated/Bar';
 export default class Bubbles extends Component {
   static propTypes = {
     size: PropTypes.number,
-    color: PropTypes.string,
+    colors: PropTypes.array,
     spaceBetween: PropTypes.number
   };
 
   static defaultProps = {
     spaceBetween: 4,
     size: 20,
-    color: '#000'
+    colors: ['#000', '#000', '#000', '#000']
   };
 
   state = {
     bars: [
-      new Animated.Value(this.props.size),
       new Animated.Value(this.props.size),
       new Animated.Value(this.props.size),
       new Animated.Value(this.props.size),
@@ -61,12 +60,12 @@ export default class Bubbles extends Component {
   }
 
   renderBar(index) {
-    const { size, spaceBetween, color } = this.props;
+    const { size, spaceBetween, colors } = this.props;
     const width = size / 3;
     const x = width / 2 + (width + spaceBetween) * index;
 
     return (<Bar
-      fill={color}
+      fill={colors[index]}
       width={width}
       height={this.state.bars[index]}
       originY={0.5 * size}
@@ -86,7 +85,6 @@ export default class Bubbles extends Component {
       {this.renderBar(1)}
       {this.renderBar(2)}
       {this.renderBar(3)}
-      {this.renderBar(4)}
     </Surface>);
   }
 }
