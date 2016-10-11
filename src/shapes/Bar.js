@@ -14,9 +14,9 @@ export default class Bar extends Component {
     const path = Path()
       .moveTo(width / -2, height * -1.5)
       .line(0, height)
-      .line(width, 0)
+      .curve(width / 1.6, -width / 1.6, width, width / 8)
       .line(0, height)
-      .line(-width, 0)
+      .curve(-width / 1.6, width / 1.6, -width, -width / 8)
       .close();
 
     return <Shape {...this.props} d={path}/>;
